@@ -4,15 +4,18 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import {clearUser} from "../features/authSlice"
 
 
 export default function Navbar() {
     const navigate = useNavigate()
-    const user = true;
+    const user = useSelector((state)=> state.auth.user);
+    const dispatch = useDispatch();
 
     const handleLogout =() => {
-      //! clear user data
-      navigate("Login")
+      dispatch(clearUser());
+      navigate("login")
     }
   return (
     <Box sx={{ flexGrow: 1 }}>
